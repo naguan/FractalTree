@@ -1,6 +1,22 @@
-private double fractionLength = .8; 
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class FractalTree extends PApplet {
+
+private double fractionLength = .8f; 
 private int smallestBranch = 5; 
-private double branchAngle = .5;  
+private double branchAngle = .5f;  
 private boolean yes = true;
 public void setup() 
 {   
@@ -16,8 +32,8 @@ public void draw()
 public void keyPressed() {
 	if( key == 'w' && yes == true)
 	{
-		branchAngle-=.1;
-		if(branchAngle == -7.450580596923828E-9)
+		branchAngle-=.1f;
+		if(branchAngle == -7.450580596923828e-9f)
 		{
 			branchAngle = branchAngle;
 			yes = false;
@@ -25,9 +41,9 @@ public void keyPressed() {
 	}
 	if(key == 's' && yes == false)
 	{
-		branchAngle+=.1;
+		branchAngle+=.1f;
 		println(branchAngle);
-		if(branchAngle >= 3.0001)
+		if(branchAngle >= 3.0001f)
 		{
 			branchAngle = branchAngle;
 			yes = true;
@@ -52,3 +68,12 @@ public void drawBranches(int x,int y, double branchLength, double angle)
 		drawBranches(endx2 ,endy2 ,branchLength-5 ,angle2-branchAngle);
 	}
 } 
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "FractalTree" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
